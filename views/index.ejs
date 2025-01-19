@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" 
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- --------- UNICONS ---------- -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Open+Sans&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="/styles/home/styles.css" />
+    <title>Web Design Mastery | Theo Rentals</title>
+
+    <!-- --------- FAVICON ---------- -->
+    <link rel="shortcut icon" href="https://www.logogenie.net/icons/preview/11386" type="image/x-icon">
+    <style>
+      .featured-car {
+        display: flex;
+        justify-content: center;
+      }
+
+      .featured-car.btn ion-icon {
+        font-size: 22px;
+        --ionicon-stroke-width: 40px;
+      }
+      
+      .featured-car .btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, hsla(0, 0%, 100%, 0.4), transparent);
+        opacity: 0;
+        pointer-events: none;
+        transition: var(--transition);
+      }
+      
+      .featured-car .btn:is(:hover, :focus) { box-shadow: var(--shadow-2); }
+      
+      .featured-car .btn:is(:hover, :focus)::before { opacity: 1; }
+      
+      .feature-section { padding-block: var(--section-padding); }
+      .featured-car .title-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px 15px;
+        margin-bottom: 30px;
+      }
+      
+      .featured-car-link {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--independence);
+        font-size: 16px;
+      }
+      
+      .featured-car-link span { transition: var(--transition); }
+      
+      .featured-car-link:is(:hover, :focus) span { color: var(--space-cadet); }
+      
+      .featured-car-link ion-icon {
+        margin-top: 3px;
+        transition: var(--transition);
+      }
+      
+      .featured-car-link:is(:hover, :focus) ion-icon { color: var(--carolina-blue); }
+      
+      .featured-car-list {
+        display: flex;
+        justify-content: center;
+        max-width: 90vw;
+        flex-wrap: wrap;
+        gap: 0em;
+      }
+      
+      .featured-car-card {
+        display: flex;
+        flex-direction: column;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        background: #ffffff;
+        box-shadow:  19px 19px 37px #e3e3e3,
+             -19px -19px 37px #ffffff;
+        height: fit-content;
+        width: 22em;
+        margin: 0.7em;
+      }
+
+      .featured-car-card .w-100 {
+        border-radius: 5px;
+      }
+      
+      .featured-car-card .card-banner {
+        background: hsla(0, 0%, 0%, 0.2);
+        aspect-ratio: 3 / 2;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      
+      .featured-car-card .card-banner > img {
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      .featured-car-card .card-content { padding: 20px 10px 10px; }
+      
+      .featured-car-card .card-title-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 15px;
+      }
+      
+      .featured-car-card .card-title { width: calc(100% - 60px); }
+      
+      .featured-car-card .card-title > a {
+        color: inherit;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
+      .featured-car-card .card-title > a:is(:hover, :focus) { color: var(--carolina-blue); }
+      
+      .featured-car-card .year {
+        font-family: var(--ff-nunito);
+        font-size: var(--fs-6);
+        font-weight: var(--fw-600);
+        padding: 3px 12px;
+        border: none;
+        border-radius: var(--radius-14);
+      }
+      
+      .featured-car-card .card-list {
+        display: flex;
+        gap: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
+        margin-bottom: 15px;
+      }
+      
+      .featured-car-card .card-list-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .featured-car-card .card-list-item ion-icon {
+        font-size: 20px;
+        color: var(--carolina-blue);
+        --ionicon-stroke-width: 38px;
+      }
+      
+      .featured-car-card .card-item-text {
+        color: var(--independence);
+        font-size: var(--fs-6);
+      }
+      
+      .featured-car-card .card-price-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+      }
+      
+      .featured-car-card .card-price {
+        font-family: var(--ff-nunito);
+        font-size: var(--fs-6);
+        color: var(--space-cadet);
+      }
+      
+      .featured-car-card .card-price strong {
+        font-size: var(--fs-3);
+        font-weight: var(--fw-400);
+      }
+      
+      .featured-car-card .btn:last-child {
+        --height: 36px;
+        min-width: 100%;
+      }
+      
+      .featured-car-card .fav-btn:is(:hover, :focus) {
+        --background: var(--lavender-blush);
+        --color: var(--red-salsa);
+      }
+      
+      
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="nav__header">
+          <div class="nav__logo">
+            <a href="#">TheoInCodeLand</a>
+          </div>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
+        </div>
+        
+        <ul class="nav__links" id="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/all-cars">Cars</a></li>
+          <li><% if (user && user.role === 'customer') { %>
+            <a href="/favourites">Favourites</a>
+            <% } if ( user && user.role === 'admin' ) { %>
+            <a href="/admin/cars">Manage cars</a>
+            <% } %>
+          </li>
+
+
+
+
+
+          <li><% if (user && user.role === 'customer') { %>
+            <a href="/user/bookings/<%= user.id %>">Bookings</a>
+            <% } if ( user && user.role === 'admin' ) { %>
+            <a href="/admin/bookings">Bookings</a>
+            <% } %>
+          </li>         
+        </ul>
+        <div class="nav__btns" style="display: flex; gap: 3em">
+            <% if (user) { %>
+                <p>Hello, <%= user.name %>! </p>
+                <a href="/auth/logout" class="btn btn__secondary">Logout</a>
+            <% } else { %>
+                <a href="/auth/login" class="btn btn__primary">Account <i class="uil uil-user" style="font-size: x-large;"></i> </a>  
+            <% } %>
+          <!-- <button class="btn btn__primary">Sign Up</button>
+          <button class="btn btn__secondary">Sign In</button> -->
+        </div>
+      </nav>
+      <div class="section__container header__container" id="home">
+        <div class="header__image">
+          <img src="https://www.pngplay.com/wp-content/uploads/15/Blue-Mercedes-Suv-PNG-HD-Quality.png" alt="header" />
+        </div>
+        <div class="header__content">
+          <h1>Reliable Car Rentals in JHB, Just for You</h1>
+          <p>
+            Located at jhb, we offer a variety of well-maintained vehicles, affordable prices, and friendly local service. Whether it's a quick errand or a weekend getaway, we've got the perfect car for you.
+          </p>
+          <div class="header__links">
+            <a href="#">
+              <img src="/assets/store.jpg" alt="app store" />
+            </a>
+            <a href="#">
+              <img src="/assets/play.png" alt="play" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- <%- include('partials/chatbot') %> -->
+    <section class="section__container steps__container" id="rent">
+      <p class="section__subheader">HOW IT WORKS</p>
+      <h2 class="section__header">RentGo: 3 Simple Steps:</h2>
+      <div class="steps__grid">
+        <div class="steps__card">
+          <span><i class="uil uil-building"></i></i></span>
+          <h4>select your rental.</h4>
+          <p>
+            Visit our location at Johannesburg and choose the perfect car for your needs.
+          </p>
+        </div>
+        <div class="steps__card">
+          <span><i class="uil uil-comparison"></i></i></span>
+          <h4>Use Our Car Finance Calculator</h4>
+          <p>
+            Specify the date and time you'd like to pick up your car with flexible scheduling options.
+          </p>
+        </div>
+        <div class="steps__card">
+          <span><i class="uil uil-calendar-alt"></i></i></span>
+          <h4>Book your car</h4>
+          <p>
+            Choose from our wide range of vehicles and book your rental directly at our branch.
+
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-section featured-car" id="featured-car">
+      <div class="feature-container">
+
+        <div class="title-wrapper">
+          <h2 class="h2 section-title">Featuted cars</h2>
+
+          <a href="/all-cars" class="featured-car-link">
+            <span>View more <i class="uil ualail-angle-right-b"></i></span>
+
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </a>
+        </div>
+
+        <ul class="featured-car-list">
+
+          <% cars.forEach(car => { %>
+            <li>
+              <div class="featured-car-card">
+
+                <figure class="card-banner">
+
+                  <% if (car.image_urls.length > 0) { %>
+                      <img src="<%= car.image_urls[0] %>" alt="<%= car.model %>" loading="lazy" width="440" height="300"
+                      class="w-100"> <!-- Display the first image -->
+                  <% } else { %>
+                      <img src="/default-image.jpg" alt="No image available" loading="lazy" width="440" height="300"
+                      class="w-100"> <!-- Default image -->
+                  <% } %>
+  
+  
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-title-wrapper">
+                    <h3 class="h3 card-title">
+                      <a href="">
+                        <%= car.brand %> <%= car.name %>
+                      </a>
+                    </h3>
+
+                    <data class="year" value="2021" style="border-radius: 5px; border-color: #474fa0;"><%= car.year %></data>
+                  </div>
+
+                  <ul class="card-list">
+
+                    <li class="card-list-item">
+                      <i class="fa-solid fa-users"></i>
+
+                      <span class="card-item-text"><%= car.seating_capacity %> People</span>
+                    </li>
+
+                    <li class="card-list-item">
+                      <i class="fa-solid fa-gas-pump"></i>
+
+                      <span class="card-item-text"><%= car.fuel_type %></span>
+                    </li>
+
+                    <li class="card-list-item">
+                      <i class="fa-solid fa-gauge-high"></i>
+
+                      <span class="card-item-text"><%= car.mileage %> km</span>
+                    </li>
+
+                    <li class="card-list-item">
+                      <i class="fa-solid fa-microchip"></i>
+
+                      <span class="card-item-text"><%= car.transmission %></span>
+                    </li>
+
+                  </ul>
+
+                  <div class="card-price-wrapper">
+
+                    <p class="card-price">
+                      <strong>
+                        R <%= car.price_per_day %>
+                      </strong> / Day
+                    </p>
+
+                    <p><%= car.available %></p>
+                    <a href="/car/<%= car.id %>" class="btn" style="background: #474fa0; border-radius: 5px;">View Details</a>
+
+                  </div>
+
+                </div>
+                
+              </div>
+            </li>
+          <% }); %>
+          
+        </ul>
+
+      </div>
+    </section>
+
+    <section class="section__container service__container" id="service" style="background: black; min-width:98.8vw;">
+      <div class="service__image">
+        <img src="https://www.pngplay.com/wp-content/uploads/15/Blue-Mercedes-Suv-Background-PNG-Image.png" alt="service" />
+      </div>
+      <div class="service__content">
+        <p class="section__subheader" style="color: #696969;">BEST SERVICES</p>
+        <h2 class="section__header" style="color: white;">
+          Feel the best experience with our rental deals
+        </h2>
+        <ul class="service__list">
+          <li>
+            <span><i class="ri-price-tag-3-fill" style="color: #474fa0;"></i></span>
+            <div>
+              <h4 style="color: #696969;">Deals for every budget</h4>
+              <p>
+                From economy cars to luxury vehicles, we have something for
+                everyone, ensuring you get the best value for your money.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span style="background: none;"><i class="ri-wallet-fill" style="color: #474fa0;"></i></span>
+            <div>
+              <h4 style="color: #696969;">Best price guarantee</h4>
+              <p>
+                We ensure you get competitive rates in the market, so you can
+                book with confidence knowing you're getting the best deal.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span><i class="ri-customer-service-fill" style="color: #474fa0;"></i></span>
+            <div>
+              <h4 style="color: #696969;">Support 24/7</h4>
+              <p>
+                Our dedicated team is available 24/7 to assist you with any
+                questions or concerns, ensuring a smooth rental experience.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section__container experience__container" id="ride" style="background-color: #00000035; min-width: 100vw">
+      <p class="section__subheader">CUSTOMER EXPERIENCE</p>
+      <h2 class="section__header">
+        We are ensuring the best customer experience
+      </h2>
+      <div class="experience__content">
+        <div class="experience__card">
+          <span style="color: #474fa0;"><i class="ri-price-tag-3-fill"></i></span>
+          <p>Competitive pricing</p>
+        </div>
+        <div class="experience__card">
+          <span style="color: #474fa0;"><i class="ri-money-rupee-circle-fill"></i></span>
+          <p>Easier Rent On Your Budget</p>
+        </div>
+        <div class="experience__card">
+          <span style="color: #474fa0;"><i class="ri-bank-card-fill"></i></span>
+          <p>Most Felxible Payment Plans</p>
+        </div>
+        <div class="experience__card">
+          <span style="color: #474fa0;"><i class="ri-award-fill"></i></span>
+          <p>The Best Extended Auto Warranties</p>
+        </div>
+        <div class="experience__card">
+          <span style="color: #474fa0;"><i class="ri-customer-service-2-fill"></i></span>
+          <p>Roadside Assistance 24/7</p>
+        </div>
+        <div class="experience__card">
+          <span style="color: #474fa0;"><i class="ri-car-fill"></i></span>
+          <p>Your Choice Of Mechanic</p>
+        </div>
+        <img src="https://images.netdirector.co.uk/gforces-auto/image/upload/q_auto,c_fill,f_auto,fl_lossy/auto-client/9d3c7514d77feab69e74f023b2fc5a30/glsmaybach.png" alt="experience"  style="min-width: 55em;"/>
+      </div>
+    </section>
+
+    
+
+    <footer>
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <h4>Our Products</h4>
+          <ul class="footer__links">
+            <li><a href="#">Cars</a></li>
+            <li><a href="#">Packages</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Priceline</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>About TheoInCodeLand</h4>
+          <ul class="footer__links">
+            <li><a href="#">Why TheoInCodeLand Rentals</a></li>
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Investors</a></li>
+            <li><a href="#">Press Centers</a></li>
+            <li><a href="#">Advertise</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Resources</h4>
+          <ul class="footer__links">
+            <li><a href="#">Download</a></li>
+            <li><a href="#">Help Centers</a></li>
+            <li><a href="#">Guides</a></li>
+            <li><a href="#">Partner Network</a></li>
+            <li><a href="#">Mechanics</a></li>
+            <li><a href="#">Developer</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Extras</h4>
+          <ul class="footer__links">
+            <li><a href="#">Rental Deal</a></li>
+            <li><a href="#">Repair Shop</a></li>
+            <li><a href="#">View Booking</a></li>
+            <li><a href="#">Hire Companies</a></li>
+            <li><a href="#">New Offers</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="section__container footer__bar">
+        <h4>TheoInCodeLand</h4>
+        <ul class="footer__socials">
+          <li>
+            <a href="#"><i class="ri-facebook-fill"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="ri-twitter-fill"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="ri-google-fill"></i></a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const navLinks = document.getElementById("nav-links");
+        const menuBtnIcon = menuBtn.querySelector("i");
+
+        menuBtn.addEventListener("click", (e) => {
+        navLinks.classList.toggle("open");
+
+        const isOpen = navLinks.classList.contains("open");
+        menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-line");
+        });
+
+        navLinks.addEventListener("click", (e) => {
+        navLinks.classList.remove("open");
+        menuBtnIcon.setAttribute("class", "ri-menu-line");
+        });
+
+        const scrollRevealOption = {
+        distance: "50px",
+        origin: "bottom",
+        duration: 1000,
+        };
+
+        ScrollReveal().reveal(".header__image img", {
+        ...scrollRevealOption,
+        origin: "right",
+        });
+        ScrollReveal().reveal(".header__content h1", {
+        ...scrollRevealOption,
+        delay: 500,
+        });
+        ScrollReveal().reveal(".header__content p", {
+        ...scrollRevealOption,
+        delay: 1000,
+        });
+        ScrollReveal().reveal(".header__links", {
+        ...scrollRevealOption,
+        delay: 1500,
+        });
+
+        ScrollReveal().reveal(".steps__card", {
+        ...scrollRevealOption,
+        interval: 500,
+        });
+
+        ScrollReveal().reveal(".service__image img", {
+        ...scrollRevealOption,
+        origin: "left",
+        });
+        ScrollReveal().reveal(".service__content .section__subheader", {
+        ...scrollRevealOption,
+        delay: 500,
+        });
+        ScrollReveal().reveal(".service__content .section__header", {
+        ...scrollRevealOption,
+        delay: 1000,
+        });
+        ScrollReveal().reveal(".service__list li", {
+        ...scrollRevealOption,
+        delay: 1500,
+        interval: 500,
+        });
+
+        ScrollReveal().reveal(".experience__card", {
+        duration: 1000,
+        interval: 500,
+        });
+
+        ScrollReveal().reveal(".download__image img", {
+        ...scrollRevealOption,
+        origin: "right",
+        });
+        ScrollReveal().reveal(".download__content .section__header", {
+        ...scrollRevealOption,
+        delay: 500,
+        });
+        ScrollReveal().reveal(".download__content p", {
+        ...scrollRevealOption,
+        delay: 1000,
+        });
+        ScrollReveal().reveal(".download__links", {
+        ...scrollRevealOption,
+        delay: 1500,
+        });
+
+        'use strict';
+
+        /**
+        * navbar toggle
+        */
+
+        const overlay = document.querySelector("[data-overlay]");
+        const navbar = document.querySelector("[data-navbar]");
+        const navToggleBtn = document.querySelector("[data-nav-toggle-btn]");
+        const navbarLinks = document.querySelectorAll("[data-nav-link]");
+
+        const navToggleFunc = function () {
+        navToggleBtn.classList.toggle("active");
+        navbar.classList.toggle("active");
+        overlay.classList.toggle("active");
+        }
+
+        navToggleBtn.addEventListener("click", navToggleFunc);
+        overlay.addEventListener("click", navToggleFunc);
+
+        for (let i = 0; i < navbarLinks.length; i++) {
+        navbarLinks[i].addEventListener("click", navToggleFunc);
+        }
+
+
+
+        /**
+        * header active on scroll
+        */
+
+        const header = document.querySelector("[data-header]");
+
+        window.addEventListener("scroll", function () {
+        window.scrollY >= 10 ? header.classList.add("active")
+            : header.classList.remove("active");
+        });
+    </script>
+  </body>
+</html>

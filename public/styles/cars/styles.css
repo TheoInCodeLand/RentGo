@@ -1,0 +1,326 @@
+/* General Reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+
+  a{
+    text-decoration: none;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Header */
+  .header {
+    background: #fbfbfb;
+  }
+  
+  .header h1 {
+    font-size: 1.8rem;
+    display: inline-block;
+    margin: 0;
+    color: #333;
+  }
+  
+  .header nav {
+    float: right;
+  }
+  
+  .header nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #555;
+    font-weight: bold;
+  }
+  
+  .header nav a:hover {
+    color: #f00;
+  }
+  
+  /* Featured Cars */
+  .featured-cars {
+    text-align: center;
+    padding: 50px 0;
+  }
+  
+  .featured-cars h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .featured-cars p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  .car-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .car-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 400px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .car-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .car-image {
+    position: relative;
+  }
+  
+  .car-image img {
+    width: 100%;
+    height: 300px;
+  }
+  
+  .badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #f00;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+  }
+  
+  .car-details {
+    padding: 15px;
+    text-align: left;
+  }
+  
+  .car-details h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+  
+  .car-details .price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: rgb(16, 4, 109);
+    margin-bottom: 10px;
+  }
+  
+  .car-details ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .car-details ul li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #666;
+  }
+  
+  /* Footer */
+  .footer {
+    background: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .footer p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  
+  /* General Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Search Form Container */
+  .filter-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 3px;
+    background: url('https://images.pexels.com/photos/168938/pexels-photo-168938.jpeg?cs=srgb&dl=pexels-lalesh-168938.jpg&fm=jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    gap: 20px;
+  }
+  
+  .filter-section .container {
+    width:45%;
+    background: #020011d2;
+    color: #ddd;
+  }
+  
+  .filter-section .container form {
+    background: #000000c5;
+    color: #ddd;
+  }
+  
+  /* Form Inputs, Selects, and Buttons */
+  .filter-section input,
+  .filter-section select,
+  .filter-section button {
+    width: calc(50% - 10px); /* Two-column layout */
+    padding: 6px 8px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    color: #ddd;
+    border-radius: 0.2em;
+    background-color: #fff;
+    color: #333;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Form Fields Focus Effects */
+  .filter-section input:focus,
+  .filter-section select:focus {
+    border-color: #000000;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.149);
+    outline: none;
+  }
+  
+  /* Button Styles */
+  .filter-section button {
+    width: 20%;
+    background: hsl(219, 21%, 39%);
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.3em;
+    padding: 0.9em;
+    font-size: 12px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .filter-section button:hover {
+    background: hsl(219, 25%, 28%);
+  }
+  
+  /* Price Range Section */
+  .filter-section label {
+    display: block;
+    width: 100%;
+    font-size: 0.9rem;
+    margin: 5px 0;
+    color: #ddd;
+  }
+  
+  #priceRange {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 60%;
+    height: 1px;
+    padding: 1px;
+    background: #ddd;
+    border-radius: 0;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  #priceRange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #0012db5b;
+    background: rgb(8, 0, 68);
+    border-radius: 50%;
+    transition: background 0.3s;
+  }
+  
+  #priceRange:hover::-webkit-slider-thumb {
+    background: #0056b3;
+  }
+  
+  /* Modern Select Styling */
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 20 20"><polygon points="0,0 20,0 10,10" fill="%23999999"/></svg>')
+      no-repeat right 10px center;
+    background-size: 10px;
+    padding-right: 30px;
+  }
+  
+  /* Responsive Layout */
+  @media (max-width: 768px) {
+    .filter-section {
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 20px;
+    }
+  
+    .filter-section input,
+    .filter-section select,
+    .filter-section button {
+      width: 100%; /* Full-width on small screens */
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .filter-section {
+      padding: 15px;
+    }
+  
+    .filter-section input,
+    .filter-section select,
+    .filter-section button {
+      font-size: 0.85rem;
+      padding: 10px;
+    }
+  
+    label {
+      font-size: 0.8rem;
+    }
+  }
+  
+  /* Animations */
+  .filter-section button:hover {
+    animation: pulse 0.6s ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: translateY(-2px) scale(1);
+    }
+    50% {
+      transform: translateY(-3px) scale(1.03);
+    }
+  }
+  

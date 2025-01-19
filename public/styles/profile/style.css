@@ -1,0 +1,392 @@
+body {
+    /* width: 100vw; */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body::-webkit-scrollbar {
+    
+}
+
+/* HEADER */
+header {
+    background: #474ea019;
+    width: 100%;
+    padding-bottom: 2em;
+}
+
+/* NAVBAR SECTION */
+.navbar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 1em;
+    /* background: #9398c9; */
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.5s ease-in-out
+}
+
+/* LOGO */
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* BURGER MENU */
+.menu {
+    position: relative;
+    transition: all 0.5s ease-in-out
+}
+
+.burger {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+    cursor: pointer;
+    z-index: 2000;
+    font-size: xx-large;
+    transition: all 0.5s ease-in-out
+}
+
+.burger span {
+    display: block;
+    width: 20px;
+    height: 3px;
+    background: #252844;
+    border-radius: 2px;
+    transition: all 0.5s ease-in-out;
+}
+
+/* DROPDOWN MENU */
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 1em;
+    right: 0;
+    flex-direction: column;
+    list-style: none;
+    width: 12em;
+    background: #000e36e5;
+    padding: 1em;
+    gap: 0.7em;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease-in-out
+}
+
+.dropdown li {
+    text-align: left;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    color: #fff;
+    width: 100%;
+    font-size: small;
+    border-bottom: 1px solid #adb1e166;
+    transition: all 0.5s ease-in-out ;
+}
+
+.dropdown li:hover {
+    background: #474ea0a8;
+}
+
+/* HOVER EFFECT */
+.menu:hover .dropdown {
+    display: flex;
+}
+
+/* ACCOUNT LINK */
+.account {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 0.5em;
+}
+
+/* HERO SECTION */
+.hero__section {
+    margin-top: 3em;
+    display: flex;
+    justify-content: center;
+}
+
+.hero__section .left, .hero__section .right {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #666;
+}
+
+.hero__section .left h1 {
+    font-size: 2em;
+}
+
+.hero__section .left h3 {
+    font-size: 1.2em;
+}
+
+.hero__section .left p {
+    font-size: small;
+    width: 40%;
+}
+
+.hero__section .right img {
+    width: 70%;
+}
+
+/* MAIN SECTION */  
+
+/* profile */
+main {
+    width: 100%;
+    display: flex;
+    gap: 1em;
+    padding: 1em;
+    justify-content: center;
+}
+
+main .left, main .right {
+    max-height: 60vh;
+}
+
+main .left {
+    width: 35%;
+    gap: 0.8em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+main .right {
+    /* width: 65%; */
+    width: 100%;
+}
+
+main .left .profile__picture {
+    background: url('https://lh3.googleusercontent.com/Nsx2Lus6is8nbv1Srlb0FEFTW1bhxTE46E_w8yr4xk6bWqb9zzGdqEhUv4ACRNVXB5nSWtuHeRTaTN_-=w544-h544-l90-rj');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    transform: translateY(-65%);
+
+    box-shadow:  20px 20px 60px #d4d4d4,
+             -20px -20px 60px #ffffff;
+}
+
+main .left h1 {
+    font-size: 2em;
+    letter-spacing: 2px;
+}
+
+main .left h3 {
+    font-size: 1.2em;
+    font-weight: 100;
+    letter-spacing: 1.5px;
+}
+
+main .left p {
+    font-size: small;
+}
+
+main .left .btns {
+    display: flex;
+    gap: 1em;
+    margin: 2em 0;
+}
+
+main .left .btns button {
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    border: 1px solid #3b4188;
+    color: #3b4188;
+    background: none;
+}
+
+main .left .btns .btn {
+    background: #3b4188;
+    color: #dddddd;
+}
+
+/* RIGHT MAIN SECTION */
+main .right .controls {
+    display: flex;
+    gap: 3.5em;
+    padding: 0.7em 0;
+    width: 100%;
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 1em;
+}
+
+main .right .controls button {
+    padding: 0;
+    background: none;
+    border: none;
+    font-size: medium;
+    display: none;
+}
+
+main .right .__container {
+    width: 100%;
+    overflow-y: auto;
+    max-height: 45vh;
+}
+
+main .right .__container::-webkit-scrollbar {
+    display: none;
+}
+
+/* FAVOURITE CARS */
+main .right .__container .fav__cars {
+    width: 100%;
+    display: none; 
+    /* to change later */
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+main .right .__container .fav__cars .car__card {
+    background: whitesmoke;
+    width: 33%;
+    height: 280px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .right .__container .fav__cars .car__card img {
+    width: 80%;
+}
+
+.fav__cars .car__card .card__information {
+    width: 80%;
+    display: flex;
+    gap: 0.5em;
+    text-align: center;
+    flex-direction: column;
+}
+
+.fav__cars .car__card .card__information span {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.fav__cars .car__card .card__information button {
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    border: 1px solid #3b4188;
+    color: #3b4188;
+    background: none;padding: 0.5em 1em;
+    border-radius: 5px;
+    border: 1px solid #3b4188;
+    color: #3b4188;
+    background: none;
+}
+
+main .right .__container .manage__rentals {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+main .right .__container .manage__rentals rental {
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Booking Table Styles */
+.booking-table-container {
+    width: 100%;
+    margin-top: 1.5rem;
+    overflow-x: auto;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.booking-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+    background: #fff;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.booking-table thead {
+    background: black;
+    color: #fefefe;
+    text-decoration: none;
+    font-weight: 100;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+}
+
+.booking-table th, .booking-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: small;
+    
+}
+
+.booking-table tbody tr:hover {
+    background-color: #f1f1f1;
+    transition: background 0.3s ease;
+}
+
+.booking-table td {
+    color: #555;
+    
+}
+
+.action-btn-delete {
+    padding: 0;
+    color: red;
+    font-size: x-large;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.action-btn {
+    padding: 0.4rem 0.8rem;
+    background-color: #3b4188;
+    color: #fff;
+    border: 1px solid #3b4188;
+    cursor: pointer;
+    font-size: small;
+    margin-right: 0.5rem;
+    border-radius: 5px;
+    transition: all 0.5s ease-in-out;
+}
+
+.action-btn:hover {
+    background-color: transparent;
+    color: #3b4188;
+}
+
+/* Responsive Design for Table */
+@media (max-width: 768px) {
+    .booking-table th, .booking-table td {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+}

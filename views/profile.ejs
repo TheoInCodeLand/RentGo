@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- --------- UNICONS ---------- -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+    <!-- --------- CSS ---------- -->
+    <link rel="stylesheet" href="/styles/profile/style.css">
+
+    <!-- --------- FONT AWESOME ---------- -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" 
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- --------- FAVICON ---------- -->
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+
+    <title>Portfolio | Ludiflex</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        .add-car {
+            text-decoration: none;
+            color: #343f85;
+            padding: 0.5em;
+            border: 1px solid #343f85;
+            border-radius: 8px;
+            margin-top: 1em;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .add-car:hover {
+            color: white;
+            background: #343f85;
+        }
+        .left {
+            margin-top: 5em;
+            display: flex;
+            flex-direction: column;
+            max-width: 550px;
+            
+        }
+
+        .left p {
+            margin-top: 1em;
+            color: #11194a;
+        }
+
+        .left h1 {
+            color: #11194a;
+        }
+    </style>
+    
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <p class="logo">Bookings</p>
+            <div class="menu">
+                <div class="burger">
+                    <i class="uil uil-bars"></i>
+                </div>
+                <ul class="dropdown">
+                    <li><a href="/" class="account"><i class="uil uil-home"></i> home</a></li>
+                    <li><a href="/all-cars" class="account"><i class="uil uil-car"></i> all cars</a></li>
+                    <li><a href="/favourites" class="account"><i class="uil uil-favorite"></i> favourite cars</a></li>
+                    <li><a href="/auth/logout" class="account"> <i class="uil uil-signout"></i> logout </a></li>
+                </ul>
+            </div>
+           
+        </div>
+        <div class="hero__section">
+            <div class="left">
+                <h1>Manage Your Car Bookings Anytime, Anywhere </h1>
+                <p>Keep track of your rental history and make payments to your reservations in just a few clicks.</p>
+                <a href="/all-cars" class="add-car">Book a New Car</a>
+
+            </div>
+            <div class="right">
+                <img src="https://www.pngall.com/wp-content/uploads/13/Pay-PNG-Background.png" alt="">
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <!-- <div class="left">
+            <div class="profile__picture"></div>
+            <h1><%= user.username %></h1>
+            <h3 class="user__names"><i class="uil uil-user-square"></i> <%= user.name %> <%= user.surname %></h3>
+            <p class="email"><i class="uil uil-envelope"></i> <%= user.email %></p>
+            <p class="phone"><i class="uil uil-phone-alt"></i> <%= user.phone %></p>
+            <p class="address"><i class="uil uil-location-pin-alt"></i> <%= user.address %></p>
+            
+            <div class="btns">
+                <button>Edit profile</button>
+                <button class="btn">Change password</button>
+            </div>
+
+        </div> -->
+        <div class="right">
+            <div class="controls">
+                <button>Manage favourites <i class="uil uil-heart"></i></button>
+                <button>Manage rentals <i class="uil uil-book"></i></button>
+                <button>manage History <i class="uil uil-history-alt"></i></button>
+                <button> Manage reviews <i class="uil uil-star"></i></button>
+            </div>
+            <div class="__container">
+                <div class="fav__cars">
+                    <div class="car__card">
+                        <img src="https://cdn.carchoice.com.sg/web/brandnew/1687941474396/Mercedes-AMG%20A45S_1440x1440.png?alt=media&token=aedb0540-25e9-4b49-8f55-026c5dee27b3" alt="">
+                        <div class="card__information">
+                            <h4>Mercedes-AMG A45S</h4>
+                            <h2>R 2000/day</h2>
+                            <span>
+                                <button>remove favourite</button>
+                                <button>view car</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="car__card">
+                        <img src="https://cdn.carchoice.com.sg/web/brandnew/1687941474396/Mercedes-AMG%20A45S_1440x1440.png?alt=media&token=aedb0540-25e9-4b49-8f55-026c5dee27b3" alt="">
+                        <div class="card__information">
+                            <h4>Mercedes-AMG A45S</h4>
+                            <h2>R 2000/day</h2>
+                            <span>
+                                <button>remove favourite</button>
+                                <button>view car</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="car__card">
+                        <img src="https://cdn.carchoice.com.sg/web/brandnew/1687941474396/Mercedes-AMG%20A45S_1440x1440.png?alt=media&token=aedb0540-25e9-4b49-8f55-026c5dee27b3" alt="">
+                        <div class="card__information">
+                            <h4>Mercedes-AMG A45S</h4>
+                            <h2>R 2000/day</h2>
+                            <span>
+                                <button>remove favourite</button>
+                                <button>view car</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="car__card">
+                        <img src="https://cdn.carchoice.com.sg/web/brandnew/1687941474396/Mercedes-AMG%20A45S_1440x1440.png?alt=media&token=aedb0540-25e9-4b49-8f55-026c5dee27b3" alt="">
+                        <div class="card__information">
+                            <h4>Mercedes-AMG A45S</h4>
+                            <h2>R 2000/day</h2>
+                            <span>
+                                <button>remove favourite</button>
+                                <button>view car</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="car__card">
+                        <img src="https://cdn.carchoice.com.sg/web/brandnew/1687941474396/Mercedes-AMG%20A45S_1440x1440.png?alt=media&token=aedb0540-25e9-4b49-8f55-026c5dee27b3" alt="">
+                        <div class="card__information">
+                            <h4>Mercedes-AMG A45S</h4>
+                            <h2>R 2000/day</h2>
+                            <span>
+                                <button>remove favourite</button>
+                                <button>view car</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="car__card">
+                        <img src="https://cdn.carchoice.com.sg/web/brandnew/1687941474396/Mercedes-AMG%20A45S_1440x1440.png?alt=media&token=aedb0540-25e9-4b49-8f55-026c5dee27b3" alt="">
+                        <div class="card__information">
+                            <h4>Mercedes-AMG A45S</h4>
+                            <h2>R 2000/day</h2>
+                            <span>
+                                <button>remove favourite</button>
+                                <button>view car</button>
+                            </span>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="manage__rentals">
+                    <table class="booking-table">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>View car</th>
+                                <th>Car</th>
+                                <th>Rental Dates</th>
+                                <th>Total Cost</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (bookings.length > 0) { %>
+                                <% bookings.forEach(function(booking) { %>
+                            <tr>
+                                <td><%= booking.id %></td>
+                                <td>
+                                    <a href="/car/<%= booking.car_id %>">
+                                        <img src="https://www.bookitlive.net/content/wp-content/uploads/2023/07/Screen-Shot-2023-07-28-at-1.43.13-pm.png" width="80px" alt="" class="booking__img">
+                                    </a>
+                                </td>
+                                <td><%= booking.car_brand %> <%= booking.car_name %></td>
+                                <td><%= booking.rental_date %> to <%= booking.return_date %></td>
+                                <td>R <%= booking.total_cost %></td>
+                                <td><%= booking.status %></td>
+                                <td>
+                                    <!-- <button class="action-btn">View</button>  -->
+                                    <% if (booking.status === 'pending') { %>
+                                        <form action="/booking/user/bookings/cancel/<%= booking.id %>" method="POST" style="display: inline;">
+                                            <button type="submit" class="action-btn">Cancel</button>
+                                        </form>
+                                    <% } else if (booking.status === 'accepted' && booking.payment_status !== 'paid') { %>
+                                        <form action="/payment/initiate" method="POST">
+                                            <input type="hidden" name="bookingId" value="<%= booking.id %>">
+                                            <input type="hidden" name="itemName" value="<%= booking.car_name %>">
+                                            <input type="hidden" name="amount" value="<%= booking.total_cost %>">
+                                            <button type="submit" class="action-btn">Pay <i class="uil uil-bill"></i></button>
+                                        </form>
+                                    <% } else if (booking.payment_status === 'paid') { %>
+                                        <span>Paid</span>
+                                        <form action="/booking/user/bookings/delete/<%= booking.id %>" method="POST">
+                                            <button type="submit" class="action-btn-delete"><i class="uil uil-trash-alt"></i></button>
+                                        </form>
+                                        
+                                    <% } else { %>
+                                        <span>Canceled</span>
+                                        <form action="/booking/user/bookings/delete/<%= booking.id %>" method="POST">
+                                            <button type="submit" class="action-btn-delete"><i class="uil uil-trash-alt"></i></button>
+                                        </form>
+                                        
+                                    <% } %>
+                                    
+
+                                </td>
+                            </tr>
+                            <% }); %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="6">No bookings found.</td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>

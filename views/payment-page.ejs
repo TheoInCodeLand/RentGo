@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Payment</title>
+</head>
+<body>
+    <h1>Make Payment</h1>
+    <p>Booking for: <%= booking.car_name %></p>
+    <p>Total Cost: $<%= booking.total_cost %></p>
+    <form action="/pay/<%= booking.id %>" method="POST">
+        <label for="cardNumber">Card Number:</label>
+        <input type="text" id="cardNumber" name="cardNumber" required>
+        
+        <label for="expiryDate">Expiry Date:</label>
+        <input type="text" id="expiryDate" name="expiryDate" required>
+        
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" required>
+        
+        <button type="submit">Pay</button>
+    </form>
+</body>
+</html>

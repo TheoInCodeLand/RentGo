@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- --------- UNICONS ---------- -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+    <!-- --------- CSS ---------- -->
+    <link rel="stylesheet" href="/styles/car/style.css">
+    <!-- <link rel="stylesheet" href="/Loan-Calculator-main/style.css"> -->
+
+    <!-- --------- FONT AWESOME ---------- -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" 
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- --------- FAVICON ---------- -->
+    <link rel="shortcut icon" href="https://www.logogenie.net/icons/preview/11386" type="image/x-icon">
+
+    <title><%= car.brand %> <%= car.model %> <%= car.name %></title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        *{
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <a href="/" >
+            
+            <img src="https://www.logogenie.net/icons/preview/11386" alt="Logo" style="width: 80px;">
+        </a>
+
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/all-cars">Cars</a></li>
+                <!-- <li><a href="/admin/rental-cars">Favourite cars <i class="uil uil-heart-sign"></i></a></li> -->
+                <li><a href="#Financial Calculator" onclick="openCalculator()">Finance <i class="uil uil-calculator"></i></a></li>
+                <% if (user) { %>
+                    <li><a href="/user/bookings/<%= user.id %>" style="text-decoration: none; color: #f5f5f5a7;">View Bookings</a></li>
+                  <% } else { %>
+                    <li></li><a href="/auth/login" style="text-decoration: none; color: #f5f5f5a7;">Login to View Bookings</a></li>
+                  <% } %>
+                <!-- onclick="openCalculator()" -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Section -->
+    <main>
+        <div class="left">
+            <h1><%= car.brand %></h1>
+            <h2><%= car.name %> (R <%= car.price_per_day %> /day)</h2>
+            <p><%= car.description %></p>
+            
+            <span class="car-details">
+                <span class="detail" id="daily_price">R <%=car.car_price%></span>
+                <span class="detail"> <i class="uil uil-pump"></i> <%= car.fuel_type %></span>
+                <span class="detail"><i class="uil uil-tachometer-fast-alt"></i> <%= car.mileage %> km</span>
+                <span class="detail"><i class="uil uil-circuit"></i> <%= car.transmission %></span>
+                <span class="detail"><i class="uil uil-users-alt"></i> <%= car.seating_capacity %> Pasengers</span>
+                <span class="detail"><i class="uil uil-calender"></i> <%= car.year %> </span>
+            </span>
+            <a href="#booing-form" class="book-btn" onclick="openForm()">Rent car</a>
+        </div>
+        <div class="image-gallery">
+            <img src="<%= imageUrls[0] %>" alt="<%= car.model %>" id="main-image" class="main-image">
+            <div class="thumbnails">
+                <% imageUrls.forEach((url, index) => { %>
+                    <img 
+                        src="<%= url %>" 
+                        alt="Thumbnail <%= index + 1 %>" 
+                        class="thumbnail">
+                <% }); %>
+            </div>
+        </div>
+    </main>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature">
+            <img src="https://usaautopartsexport.com/wp-content/uploads/2022/08/Car-Engine-Transparent-Background.png" alt="Engine">
+            <div>
+                <p>625 hp (460 kW)</p>
+                <p>High-Performance M Twin Cylinder Turbo Engine</p>
+            </div>
+        </div>
+        <div class="feature">
+            <img src="https://motorhills.com/wp-content/uploads/2022/03/Car-suspension-brakes-and-steering-rack-visible-without-wheels-against-a-white-background.webp" alt="Gearbox">
+            <div>
+                <p>M xDrive</p>
+                <p>Active M differential Auto 8 speed Gear box</p>
+            </div>
+        </div>
+        <div class="feature">
+            <img src="https://png.pngtree.com/png-vector/20230904/ourmid/pngtree-turbocharger-machine-rotor-supercharger-png-image_9951483.png" alt="Speed">
+            <div>
+                <p>0-100 km/h in 3.2 s</p>
+                <p>460 kW/625 hp, 650 Nm</p>
+            </div>
+        </div>
+        <div class="feature">
+            <img src="https://media.istockphoto.com/id/470745230/photo/automobile-brake-disk-with-red-caliper.jpg?s=612x612&w=0&k=20&c=EXKu6XOa899oTAG3rOcOskx2Tg57Av7lht06YIbaYJA=" alt="Brakes">
+            <div>
+                <p>4 Wheel Alloy</p>
+                <p>20mm Disc Brake</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <div class="form-overlay" id="bookingForm">
+        <div class="form-container">
+            <!-- <h2>Book your <%= car.brand%> <%= car.name%> now for renatl!</h2> -->
+            <!-- /* From Uiverse.io by Yaya12085 */  -->
+            <form class="form" action="/booking/book/<%= car.id %>" method="POST" id="contact-form">
+                <p class="title" style="font-size: medium;">R <%= car.price_per_day %>/day </p>
+                <p class="message">Book your <%= car.brand%> <%= car.name%> now for rental!</p>
+            
+                <% if (user) { %>
+                    <div class="flex">
+                        <label>
+                            <input 
+                              type="text" 
+                              id="customer_name" 
+                              name="customer_name" 
+                              class="input" 
+                              required
+                              value="<%=user.name%>"
+                            >
+                            <span>Firstname</span>
+                        </label>
+                          
+                
+                        <label>
+                            <input type="text" id="customer_surname" name="customer_surname" class="input" required value="<%=user.surname%>">
+                            <span>Lastname</span>
+                            
+                        </label>
+                    </div>  
+    
+                    <label>
+                        <input type="email" id="user_email" name="user_email" class="input" required value="<%=user.email%>">
+                        <span>Email user</span>
+                    </label>
+                    
+                  <% } else { %>
+                    <li></li><a href="/auth/login" style="text-decoration: none; color: #f5f5f5a7;">Login to View Bookings</a></li>
+                  <% } %>
+                 
+            
+                <label>
+                    <input type="date" id="rentalDate" name="rentalDate" required class="input">
+                </label>
+            
+                <label>
+                    <input type="date" id="returnDate" name="returnDate" required class="input">
+                    <input type="hidden" id="pricePerDay" name="pricePerDay" value="<%= car.price_per_day %>">
+                </label>
+            
+                <label>
+                    <input type="text" id="totalCost" name="totalCost" readonly class="input" placeholder="Total price">
+                </label>
+            
+                <div style="display: flex; min-width: 100%; gap: 2em;">
+                    <% if (user) { %>
+                        <button class="submit">Submit</button>
+                    <% } else { %>
+                        <p>You need to <a href="/auth/login">login</a> to book a car!</p>
+                    <% } %>
+                     
+                    
+                    <button class="submit" type="button" onclick="closeForm()">Cancel</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+    <!-- Booking Form -->
+    <div id="financial_calculator">
+        
+        <div class="loan-calculator">
+            
+            <div class="top">
+                <!-- <button type="button" class="close-tab" ><i class="uil uil-times"></i></button> -->
+              <h2>Car Monthly Installment Estimator</h2>
+          
+              <form action="#">
+                <div class="group">
+                  <div class="title">Car Price (R)</div>
+                  <input type="text" value="<%= car.car_price %>" class="car-price"  readonly/>
+                </div>
+          
+                <div class="group">
+                  <div class="title">Down Payment (R)</div>
+                  <input type="number" value="50000" class="down-payment" />
+                </div>
+          
+                <div class="group">
+                  <div class="title">Interest Rate (%)</div>
+                  <input type="number" value="8.5" class="interest-rate" />
+                </div>
+          
+                <div class="group">
+                  <div class="title">Tenure (in months)</div>
+                  <input type="number" value="60" class="loan-tenure" />
+                </div>
+              </form>
+            </div>
+          
+            <div class="result">
+              <div class="left">
+                <div class="loan-emi">
+                  <h3>Monthly Installment (EMI)</h3>
+                  <div class="value">0</div>
+                </div>
+          
+                <div class="total-interest">
+                  <h3>Total Interest Payable</h3>
+                  <div class="value">0</div>
+                </div>
+          
+                <div class="total-amount">
+                  <h3>Total Amount Payable</h3>
+                  <div class="value">0</div>
+                </div>
+          
+                <button class="calculate-btn">Calculate</button> <button class="calculate-btn" onclick="closeCalculator()" id="close">Close Calculator</button>
+              </div>
+          
+              <div class="right">
+                <canvas id="myChart" width="400" height="400"></canvas>
+              </div>
+            </div>
+            
+          </div>
+          
+          <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.2/dist/chart.min.js"></script>
+          
+        
+    </div>
+
+    <script>
+        function openForm() {
+            document.getElementById("bookingForm").style.display = "flex";
+        }
+    
+        function closeForm() {
+            document.getElementById("bookingForm").style.display = "none";
+        }  
+        
+        function openCalculator() {
+            document.getElementById("financial_calculator").style.display = "flex";
+        }
+    
+        function closeCalculator() {
+            document.getElementById("financial_calculator").style.display = "none";
+        }  
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.2/dist/chart.min.js"></script>
+    <!-- <script src="/Loan-Calculator-main/main.js"></script> -->
+    <script>
+        const carPriceInput = document.querySelector(".car-price");
+        const downPaymentInput = document.querySelector(".down-payment");
+        const interestRateInput = document.querySelector(".interest-rate");
+        const loanTenureInput = document.querySelector(".loan-tenure");
+
+        const loanEMIValue = document.querySelector(".loan-emi .value");
+        const totalInterestValue = document.querySelector(".total-interest .value");
+        const totalAmountValue = document.querySelector(".total-amount .value");
+
+        const calculateBtn = document.querySelector(".calculate-btn");
+
+        let loanAmount, interestRate, loanTenure, interest;
+        let myChart;
+
+        // Function to calculate loan amount and refresh input values
+        const refreshInputValues = () => {
+        const carPrice = parseFloat(carPriceInput.value);
+        const downPayment = parseFloat(downPaymentInput.value);
+        interestRate = parseFloat(interestRateInput.value);
+        loanTenure = parseFloat(loanTenureInput.value);
+
+        // Calculate loan amount
+        loanAmount = carPrice - downPayment;
+
+        // Calculate monthly interest rate
+        interest = interestRate / 12 / 100;
+        };
+
+        // Function to validate input values
+        const checkValues = () => {
+        if (isNaN(parseFloat(carPriceInput.value)) || parseFloat(carPriceInput.value) <= 0) {
+            carPriceInput.value = "500000";
+        }
+        if (isNaN(parseFloat(downPaymentInput.value)) || parseFloat(downPaymentInput.value) < 0) {
+            downPaymentInput.value = "50000";
+        }
+        if (isNaN(parseFloat(interestRateInput.value)) || parseFloat(interestRateInput.value) <= 0) {
+            interestRateInput.value = "8.5";
+        }
+        if (isNaN(parseFloat(loanTenureInput.value)) || parseFloat(loanTenureInput.value) <= 0) {
+            loanTenureInput.value = "60";
+        }
+        };
+
+        // Function to calculate EMI
+        const calculateEMI = () => {
+        refreshInputValues();
+
+        // EMI formula
+        let emi =
+            loanAmount *
+            interest *
+            (Math.pow(1 + interest, loanTenure) /
+            (Math.pow(1 + interest, loanTenure) - 1));
+
+        return emi;
+        };
+
+        // Function to display the chart
+        const displayChart = (totalInterestPayableValue, emi) => {
+        const ctx = document.getElementById("myChart").getContext("2d");
+        myChart = new Chart(ctx, {
+            type: "pie",
+            data: {
+            labels: ["Total Interest", "Principal Loan Amount"],
+            datasets: [
+                {
+                data: [totalInterestPayableValue, loanAmount],
+                backgroundColor: ["#474fa0", "#14213d"],
+                borderWidth: 0,
+                },
+            ],
+            },
+        });
+        };
+
+        // Function to update the chart
+        const updateChart = (totalInterestPayableValue, emi) => {
+        myChart.data.datasets[0].data = [
+            totalInterestPayableValue,
+            loanAmount,
+            emi * loanTenure,
+        ];
+        myChart.update();
+        };
+
+        // Function to update the results and chart
+        const updateData = (emi) => {
+        loanEMIValue.innerHTML = Math.round(emi);
+
+        let totalAmount = Math.round(loanTenure * emi);
+        totalAmountValue.innerHTML = totalAmount;
+
+        let totalInterestPayable = Math.round(totalAmount - loanAmount);
+        totalInterestValue.innerHTML = totalInterestPayable;
+
+        if (myChart) {
+            updateChart(totalInterestPayable, emi);
+        } else {
+            displayChart(totalInterestPayable, emi);
+        }
+        };
+
+        // Initialization function
+        const init = () => {
+        checkValues();
+        let emi = calculateEMI();
+        updateData(emi);
+        };
+
+        // Initialize on page load
+        init();
+
+        // Add event listener for the calculate button
+        calculateBtn.addEventListener("click", init);
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainImage = document.getElementById('main-image');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+
+            thumbnails.forEach((thumbnail) => {
+                thumbnail.addEventListener('click', () => {
+                    mainImage.src = thumbnail.src;
+
+                    thumbnails.forEach((thumb) => thumb.style.borderColor = 'transparent');
+                    thumbnail.style.borderColor = '#007bff';
+                });
+            });
+        });
+    </script>
+    <script>
+        // Pass the value from EJS to JavaScript by outputting it as a valid JavaScript value
+        const pricePerDay = <%= car.price_per_day %>; // Make sure price_per_day is a valid number in the database
+
+        function calculateTotalCost() {
+            const rentalDate = new Date(document.getElementById('rentalDate').value);
+            const returnDate = new Date(document.getElementById('returnDate').value);
+
+            if (rentalDate && returnDate && returnDate > rentalDate) {
+                const rentalDays = Math.ceil((returnDate - rentalDate) / (1000 * 60 * 60 * 24));
+                const totalCost = rentalDays * pricePerDay;
+
+                document.getElementById('totalCost').value = totalCost.toFixed(2);
+            } else {
+                document.getElementById('totalCost').value = 0;
+            }
+        }
+
+        // Add event listeners for rental and return date inputs to update total cost
+        document.getElementById('rentalDate').addEventListener('change', calculateTotalCost);
+        document.getElementById('returnDate').addEventListener('change', calculateTotalCost);
+    </script>
+    
+    
+</body>
+</html>

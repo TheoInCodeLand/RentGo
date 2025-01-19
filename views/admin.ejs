@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Cars</title>
+
+    <!-- --------- UNICONS ---------- -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+    <!-- Include Bootstrap for styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1, h2 {
+            font-weight: bold;
+            text-align: center;
+            color: #212529;
+            margin: 20px 0;
+        }
+        
+        /* Navbar */
+        .navbar {
+            padding: 0.8rem 1rem;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-dark .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .navbar-dark .navbar-nav .nav-link {
+            font-size: 1rem;
+            margin-right: 1rem;
+            font-weight: 500;
+        }
+        
+        /* Table */
+        .table-responsive {
+            margin: 20px auto;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .table {
+            background-color: #ffffff;
+            margin-bottom: 0;
+        }
+        
+        .table thead {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+        
+        .table th, .table td {
+            text-align: left;
+            padding: 5px;
+            font-size: small;
+            vertical-align: middle;
+        }
+        
+        /* Buttons */
+        button {
+            font-size: small;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: none;
+            transition: all 0.2s;
+
+        }
+        
+        button:hover {
+            opacity: 0.9;
+        }
+        
+        .btn-danger {
+            color: #ff0000;
+            background: transparent;
+            border: none;
+            font-size: x-large;
+        }
+        
+        .btn-primary {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+        
+        /* Form Styling */
+        form {
+            margin: 0 auto;
+            padding: 0;
+            max-width: fit-content;
+            background-color: transparent;
+            border-radius: 8px;
+        }
+        
+        form .form-label {
+            font-weight: 500;
+            color: #495057;
+        }
+        
+        form input, form select, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        form input:focus, form select:focus, form textarea:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0px 0px 6px rgba(0, 123, 255, 0.25);
+        }
+        
+        form textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        
+        /* Modal */
+        .modal-content {
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .modal-header {
+            background-color: #343a40;
+            color: #ffffff;
+            border-bottom: none;
+        }
+        
+        .modal-title {
+            font-weight: bold;
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        /* Blurred Background */
+        .modal-backdrop {
+            backdrop-filter: blur(5px); /* Blurred background */
+        }
+        
+        /* File Input Styling */
+        #images {
+            border: 1px dashed #ced4da;
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+        
+        #images:hover, #images:focus {
+            border-color: #007bff;
+            background-color: #ffffff;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .navbar {
+                text-align: center;
+            }
+        
+            .table th, .table td {
+                font-size: 0.9rem;
+            }
+        
+            form {
+                padding: 15px;
+            }
+        }
+        
+    </style>
+</head>
+
+<body class="bg-light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Admin : <%=user.name%></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="">Manage Cars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/bookings">Manage Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" href="/auth/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- All Cars Section -->
+        <h2 class="text-center mb-4">All Cars</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Car</th>
+                        <th>Brand</th>
+                        <th>Price per Day</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cars.forEach(car => { %>
+                    <tr>
+                        <td><%= car.name %></td>
+                        <td><%= car.brand %></td>
+                        <td>R <%= car.price_per_day %></td>
+                        <td>
+                            <form action="/admin/delete-car/<%= car.id %>" method="POST">
+                                <button class="btn btn-danger btn-sm"><i class="uil uil-trash-alt"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Add New Car Button -->
+        <button class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#addCarModal">Add New Car</button>
+
+        <!-- Add New Car Modal -->
+        <div class="modal fade" id="addCarModal" tabindex="-1" aria-labelledby="addCarModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addCarModalLabel">Add New Car</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="carForm" action="/admin/add-car" method="POST" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="images" class="form-label">Car Images</label>
+                                <input type="file" id="images" name="images" accept="image/*" multiple required class="form-control">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="brand" class="form-label">Car Manufacturer</label>
+                                    <select name="brand" required class="form-select">
+                                        <option value="">Select Car Manufacturer</option>
+                                        <option value="Acura">Acura</option>
+                                        <option value="Alfa Romeo">Alfa Romeo</option>
+                                        <option value="Aston Martin">Aston Martin</option>
+                                        <option value="Audi">Audi</option>
+                                        <option value="Bentley">Bentley</option>
+                                        <option value="BMW">BMW</option>
+                                        <option value="Bugatti">Bugatti</option>
+                                        <option value="Buick">Buick</option>
+                                        <option value="Cadillac">Cadillac</option>
+                                        <option value="Chevrolet">Chevrolet</option>
+                                        <option value="Chrysler">Chrysler</option>
+                                        <option value="Citroën">Citroën</option>
+                                        <option value="Dodge">Dodge</option>
+                                        <option value="Ferrari">Ferrari</option>
+                                        <option value="Fiat">Fiat</option>
+                                        <option value="Ford">Ford</option>
+                                        <option value="Genesis">Genesis</option>
+                                        <option value="GMC">GMC</option>
+                                        <option value="Honda">Honda</option>
+                                        <option value="Hyundai">Hyundai</option>
+                                        <option value="Infiniti">Infiniti</option>
+                                        <option value="Jaguar">Jaguar</option>
+                                        <option value="Jeep">Jeep</option>
+                                        <option value="Kia">Kia</option>
+                                        <option value="Lamborghini">Lamborghini</option>
+                                        <option value="Land Rover">Land Rover</option>
+                                        <option value="Lexus">Lexus</option>
+                                        <option value="Lincoln">Lincoln</option>
+                                        <option value="Lotus">Lotus</option>
+                                        <option value="Maserati">Maserati</option>
+                                        <option value="Mazda">Mazda</option>
+                                        <option value="McLaren">McLaren</option>
+                                        <option value="Mercedes-Benz">Mercedes-Benz</option>
+                                        <option value="Mini">Mini</option>
+                                        <option value="Mitsubishi">Mitsubishi</option>
+                                        <option value="Nissan">Nissan</option>
+                                        <option value="Pagani">Pagani</option>
+                                        <option value="Peugeot">Peugeot</option>
+                                        <option value="Porsche">Porsche</option>
+                                        <option value="Ram">Ram</option>
+                                        <option value="Renault">Renault</option>
+                                        <option value="Rolls-Royce">Rolls-Royce</option>
+                                        <option value="Saab">Saab</option>
+                                        <option value="Subaru">Subaru</option>
+                                        <option value="Suzuki">Suzuki</option>
+                                        <option value="Tesla">Tesla</option>
+                                        <option value="Toyota">Toyota</option>
+                                        <option value="Volkswagen">Volkswagen</option>
+                                        <option value="Volvo">Volvo</option>
+                                    </select>
+                                    
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="model" class="form-label">Car Model</label>
+                                    <input type="text" id="model" name="model" placeholder="e.g., Corolla" required class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="year" class="form-label">Year</label>
+                                    <input type="number" id="year" name="year" placeholder="e.g., 2022" required class="form-control">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Car Name</label>
+                                    <input type="text" id="name" name="name" placeholder="e.g., Corolla LE" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="type" class="form-label">Body Type</label>
+                                    <select name="type" required class="form-select">
+                                        <option value="">Select Body Type</option>
+                                        <option value="Sedan">Sedan</option>
+                                        <option value="SUV">SUV</option>
+                                        <option value="Convertible">Convertible</option>
+                                        <option value="Hatchback">Hatchback</option>
+                                        <option value="Truck">Truck</option>
+                                        <option value="Coupe">Coupe</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="transmission" class="form-label">Transmission</label>
+                                    <select id="transmission" name="transmission" required class="form-select">
+                                        <option value="">Select Transmission</option>
+                                        <option value="Automatic">Automatic</option>
+                                        <option value="Manual">Manual</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="fuel_type" class="form-label">Fuel Type</label>
+                                    <select id="fuel_type" name="fuel_type" required class="form-select">
+                                        <option value="">Select Fuel Type</option>
+                                        <option value="Petrol">Petrol</option>
+                                        <option value="Diesel">Diesel</option>
+                                        <option value="Electric">Electric</option>
+                                        <option value="Hybrid">Hybrid</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="seating_capacity" class="form-label">Seating Capacity</label>
+                                    <input type="number" id="seating_capacity" name="seating_capacity" placeholder="e.g., 5" required
+                                        class="form-control">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="mileage" class="form-label">Mileage</label>
+                                    <input type="number" id="mileage" name="mileage" placeholder="e.g., 25 MPG" required
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="price_per_day" class="form-label">Price Per Day</label>
+                                    <input type="number" id="price_per_day" name="price_per_day" placeholder="e.g., 50" required
+                                        class="form-control">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="car_price" class="form-label">Car Price</label>
+                                    <input type="number" id="car_price" name="car_price" placeholder="Enter car price" class="form-control">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea id="description" name="description" placeholder="Brief car description" class="form-control"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Car</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#select-search, #brand').select2({
+                placeholder: "Select an option",
+                allowClear: true
+            });
+
+            const fetchCarManufacturers = async () => {
+                try {
+                    const response = await fetch('https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json');
+                    const data = await response.json();
+                    const brandSelect = $('#brand');
+                    brandSelect.empty();
+                    brandSelect.append('<option value="">Select Manufacturer</option>');
+
+                    data.Results.forEach(manufacturer => {
+                        brandSelect.append(`<option value="${manufacturer.MakeName}">${manufacturer.MakeName}</option>`);
+                    });
+                } catch (error) {
+                    console.error("Error fetching manufacturers:", error);
+                    alert("Failed to load car manufacturers. Please try again later.");
+                }
+            };
+            fetchCarManufacturers();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in & Sign up Form</title>
+    <link rel="stylesheet" href="/styles/auth/login.css" />
+    <!-- --------- FAVICON ---------- -->
+    <link rel="shortcut icon" href="https://www.logogenie.net/icons/preview/11386" type="image/x-icon">
+
+    <!-- --------- UNICONS ---------- -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  </head>
+  <body>
+    <div class="menu">
+      <div class="burger">
+          <i class="uil uil-bars"></i>
+      </div>
+      <ul class="dropdown">
+          <li><a href="/" class="account">home</a></li>
+          <li><a href="/all-cars" class="account">all cars</a></li>
+          <li><a href="/favourites" class="account">favourite cars</a></li>
+          <li><a href="/auth/logout" class="account"> <i class="uil uil-signout"></i> logout </a></li>
+      </ul>
+    </div>
+    <main>
+      <div class="box">
+        
+        <div class="inner-box">
+          <div class="forms-wrap">
+            <form action="/auth/login" method="POST" autocomplete="on" class="sign-in-form">
+              <div class="logo">
+                <img src="https://www.logogenie.net/icons/preview/11386" alt="easyclass" />
+                <h4>TheoInCodeLand</h4>
+              </div>
+
+              <div class="heading">
+                <h2>Welcome Back</h2>
+                <h6>Not registred yet?</h6>
+                <a href="#" class="toggle">Sign up</a>
+              </div>
+
+              <div class="actual-form">
+                <div class="input-wrap">
+                  <input
+                    type="text"
+                    minlength="4"
+                    name="username"
+                    id="username"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label><i class="uil uil-user"></i> Username</label>
+                </div>
+
+                <div class="input-wrap">
+                  <input
+                    type="password"
+                    minlength="4"
+                    name="password"
+                    id="password"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label><i class="uil uil-lock"></i> Password</label>
+                  <button type="button" id="togglePassword" class="toggle-password">
+                    <i class="uil uil-eye"></i>
+                  </button>
+                </div>
+
+                <input type="submit" value="Sign In" class="sign-btn" />
+
+                <p class="text">
+                  Forgotten your password or you login datails?
+                  <a href="#">Get help</a> signing in
+                </p>
+              </div>
+            </form>
+
+            <form action="/auth/register" method="POST" autocomplete="on" class="sign-up-form">
+              
+              <div class="heading">
+                <h6>Already have an account?</h6>
+                <a href="#" class="toggle">Sign in</a>
+              </div>
+
+              <div class="input-wrap">
+                <input
+                  type="text"
+                  id="name" 
+                  name="name"
+                  class="input-field"
+                  autocomplete="off"
+                  required
+                />
+                <label>Fisrt Name</label>
+              </div>
+              <div class="input-wrap">
+                <input
+                  type="text"
+                  id="surname" 
+                  name="surname"
+                  class="input-field"
+                  autocomplete="off"
+                  required
+                />
+                <label>Last Name</label>
+              </div>
+              <div class="actual-form">
+                <div class="input-wrap">
+                  <input
+                    type="text"
+                    id="username" 
+                    name="username"
+                    minlength="4"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Username</label>
+                </div>
+
+                <div class="input-wrap">
+                  <input
+                    type="email"
+                    id="email" 
+                    name="email"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Email</label>
+                </div>
+
+                <div class="input-wrap" style="display: none;">
+                  <input
+                    type="number"
+                    id="age" 
+                    name="age"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                    value="24"
+                  />
+                  <label>Age</label>
+                </div>
+
+                <div class="input-wrap" style="display: none;">
+                  <input
+                    type="text"
+                    id="address" 
+                    name="address"
+                    class="input-field"
+                    value="Adress"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Physical Address</label>
+                </div>
+
+                <div class="input-wrap">
+                  <input
+                    type="number"
+                    id="phone" 
+                    name="phone"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Phone</label>
+                </div>
+
+                <div class="input-wrap">
+                  <input
+                    type="password"
+                    minlength="4"
+                    id="password" 
+                    name="password"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Password</label>
+                  <button type="button" id="togglePassword" class="toggle-password">
+                    <i class="fa fa-eye"></i>
+                  </button>
+                </div>
+
+                <input type="submit" value="Sign Up" class="sign-btn" />
+
+                
+              </div>
+            </form>
+          </div>
+
+          <div class="carousel">
+            <div class="images-wrapper">
+              <img src="https://www.moneyland.ch/resources/public/dtc/media/thumb/thumb_width1000_car-rental-saving-tips.jpg.webp" class="image img-1 show" alt="" />
+              <img src="https://www.luxicar.com.au/wp-content/uploads/2023/04/young-handsome-business-man-car-showroom-choosing-car.png" class="image img-2" alt="" />
+              <img src="https://static.drivemycar.com.au/Images/meet-owner.png" class="image img-3" alt="" />
+            </div>
+
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Javascript file -->
+
+    <script src="app.js"></script>
+    <script>
+      const passwordInput = document.getElementById('password');
+      const togglePasswordButton = document.getElementById('togglePassword');
+
+      togglePasswordButton.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        // Toggle the icon
+        const icon = togglePasswordButton.querySelector('i');
+        icon.classList.toggle('fa-eye');
+        icon.classList.toggle('fa-eye-slash');
+      });
+
+    </script>
+    <script src="/js/login.js"></script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: white;
+        }
+        .tick-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            font-size: 1.5rem;
+        }
+        .tick {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #474ea0af;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1s ease-out;
+        }
+        .tick:after {
+            content: "✔";
+            font-size: 2rem;
+            color: white;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tick-container">
+        <div class="tick"></div>
+        <p>Booking successfully requested! | you'll receive an email if successful or not. </p>
+        <h1>Thank you</h1>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            window.location.href = "<%= redirectUrl %>";
+        }, 3500);
+    </script>
+</body>
+</html>

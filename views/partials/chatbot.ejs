@@ -1,0 +1,101 @@
+<div id="chat-widget">
+    <div id="chat-header">Chat with Us</div>
+    <div id="chat-body">
+        <div id="messages"></div>
+        <form id="chat-form">
+            <input type="text" id="chat-input" placeholder="Ask me anything..." required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    #chat-widget {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        width: 300px;
+        height: 400px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    #chat-header {
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        border-radius: 10px 10px 0 0;
+    }
+    #chat-body {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    #messages {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 10px;
+    }
+    #chat-form {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+    }
+    #chat-input {
+        flex-grow: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    #chat-form button {
+        padding: 10px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        margin-left: 5px;
+    }
+</style>
+<script>
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('chat-input');
+    const messagesDiv = document.getElementById('messages');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const userMessage = input.value.trim();
+
+        if (!userMessage) return;
+
+        // Display user message
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.textContent = `You: ${userMessage}`;
+        messagesDiv.appendChild(userMessageDiv);
+
+        input.value = '';
+
+        // Send user message to the chatbot backend
+        try {
+            const response = await fetch('/chat/message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userMessage }),
+            });
+
+            const data = await response.json();
+
+            // Display chatbot response
+            const botMessageDiv = document.createElement('div');
+            botMessageDiv.textContent = `Bot: ${data.message}`;
+            messagesDiv.appendChild(botMessageDiv);
+
+            messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the latest message
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+</script>

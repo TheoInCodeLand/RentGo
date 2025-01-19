@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Registration Form | CodingLab</title>
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="/styles/auth/register.css">
+  <!-- Google Maps API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLkzLyjTwNwEJdUL5LQkIsnE0Hm3JvtlA&libraries=places&callback=initAutocomplete" async defer></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Title section -->
+    <div class="title">Registration</div>
+    <div class="content">
+      <!-- Registration form -->
+      <form action="/auth/register" method="POST">
+        <div class="user-details">
+          <!-- Input for Full Name -->
+          <div class="input-box">
+            <!-- <span class="details">Name</span> -->
+            <input type="text" name="name" placeholder="Enter your name" required>
+          </div>
+          <div class="input-box">
+            <!-- <span class="details">Surname</span> -->
+            <input type="text" name="surname" placeholder="Enter your surname" required>
+          </div>
+          <!-- Input for Username -->
+          <div class="input-box">
+            <!-- <span class="details">Username</span> -->
+            <input type="text" name="username" placeholder="Enter your username" required>
+          </div>
+          <div class="input-box">
+            <!-- <span class="details">Age</span> -->
+            <input type="number" name="age" placeholder="Enter your age" required>
+          </div>
+          <!-- Updated Input for Address with Google Maps Autocomplete -->
+          <div class="input-box">
+            <!-- <span class="details">Address</span> -->
+            <input type="text" id="address-input" name="address" placeholder="Enter your address" required>
+          </div>
+          <!-- Input for Email -->
+          <div class="input-box">
+            <!-- <span class="details">Email</span> -->
+            <input type="email" name="email" placeholder="Enter your email" required>
+          </div>
+          <!-- Input for Phone Number -->
+          <div class="input-box">
+            <!-- <span class="details">Phone Number</span> -->
+            <input type="text" name="phone" placeholder="Enter your number" required>
+          </div>
+          <!-- Input for Password -->
+          <div class="input-box">
+            <!-- <span class="details">Password</span> -->
+            <input type="password" name="password" placeholder="Enter your password" required>
+          </div>
+        </div>
+
+        <!-- Gender Selection -->
+        <div class="gender-details">
+          <input type="radio" name="gender" id="dot-1">
+          <input type="radio" name="gender" id="dot-2">
+          <input type="radio" name="gender" id="dot-3">
+          <span class="gender-title">Gender</span>
+          <div class="category">
+            <label for="dot-1">
+              <span class="dot one"></span>
+              <span class="gender">Male</span>
+            </label>
+            <label for="dot-2">
+              <span class="dot two"></span>
+              <span class="gender">Female</span>
+            </label>
+            <label for="dot-3">
+              <span class="dot three"></span>
+              <span class="gender">Prefer not to say</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Submit button -->
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+      </form>
+      <p style="font-size: small;">Already have an account? <a href="/auth/login">Login</a></p>
+    </div>
+  </div>
+
+  <!-- Google Maps Autocomplete Script -->
+  <script>
+    function initAutocomplete() {
+      // Target the address input field
+      var input = document.getElementById('address-input');
+      // Initialize the autocomplete feature
+      var autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.setFields(['address_components', 'geometry', 'name']);
+
+      // Handle the event when a place is selected
+      autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+          alert("No details available for input: '" + place.name + "'");
+          return;
+        }
+        console.log('Selected Place Details:', place);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental - Filter Cars</title>
+    <link href="/styles/cars/styles.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" 
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- --------- FAVICON ---------- -->
+    <link rel="shortcut icon" href="https://www.logogenie.net/icons/preview/11386" type="image/x-icon">
+    
+</head>
+<body>
+    <section class="filter-section">
+        <div class="container" style="text-align: center;">
+            <!-- <h2>Search for you car</h2> -->
+            <form id="search-form" action="/search" method="GET" class="filter-section">
+                
+                
+                <select id="brand" name="brand">
+                <option value="">Select Manufacturer</option>
+                <!-- Options will be dynamically populated -->
+                </select>
+            
+                <select name="model">
+                <option value="">Model</option>
+                <option value="SUV">SUV</option>
+                <option value="Sedan">Sedan</option>
+                </select>
+            
+                <select name="year">
+                <option value="">Year</option>
+                <option value="2022">2022</option>
+                <option value="2010">2010</option>
+                </select>
+            
+                <select name="type">
+                <option value="">Select Type Of Car</option>
+                <option value="Coupe">Coupe</option>
+                <option value="Sedan">Sedan</option>
+                </select>
+            
+                <label>Maximum price: R <span id="priceValue">7500</span>.00</label>
+                <input 
+                type="range" 
+                min="0" 
+                max="15000" 
+                value="7500"
+                name="price" 
+                id="priceRange">
+                
+                <button type="submit" class="search-btn">SEARCH</button>
+            </form>          
+        </div>
+    </section>
+  
+    <section class="featured-cars">
+        <div class="container">
+        <h2>View all cars</h2>
+        <div class="car-cards" id="car-list">
+        <% cars.forEach(function(car) { %>
+        <a href="/car/<%= car.id %>">
+            <div class="car-card" data-brand="Hyundai" data-fuel="Petrol" data-transmission="Manual" data-price="800">
+            <div class="car-image">
+                <img src="<%= car.image_urls[1] %>" alt="<%= car.name %>">
+                <span class="badge featured">R <%= car.price_per_day %>.00/day</span>
+            </div>
+            <div class="car-details">
+                <h3><%= car.name %></h3>
+                <ul>
+                <li><i class="fas fa-road"></i> <%= car.mileage %> km</li>
+                <li><i class="fas fa-gas-pump"></i> <%= car.fuel_type %></li>
+                <li><i class="fas fa-cogs"></i> <%= car.transmission %></li>
+                <li><i class="fas fa-calendar"></i> <%= car.year %></li>
+                <li><form action="/favourites/toggle" method="POST" style="display: inline;">
+                    <input type="hidden" name="carId" value="<%= car.id %>">
+                    <button type="submit" class="favorite-toggle" style="background: none; border: none; cursor: pointer;">
+                        <% if (car.isFavorite) { %>
+                            <i class="fas fa-heart" style="color: red; font-size: x-large;"></i> <!-- Red heart if favorite -->
+                        <% } else { %>
+                            <i class="far fa-heart" style="color: gray; font-size: x-large;"></i> <!-- Gray heart if not -->
+                        <% } %>
+                    </button>
+                </form></li>
+                </ul>
+                
+                
+            </div>
+            </div>
+        </a>
+        <% }); %>
+        </div>
+        </div>
+    </section>
+  
+    <footer class="footer">
+        <div class="container">
+        <p>&copy; 2025 Car Rental. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        const priceRange = document.getElementById('priceRange');
+        const priceValue = document.getElementById('priceValue');
+
+        // Update the span initially with the default value
+        priceValue.textContent = priceRange.value;
+
+        // Add an event listener to update the span on range input
+        priceRange.addEventListener('input', () => {
+            priceValue.textContent = priceRange.value;
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+
+            $('#brand').select2({
+                placeholder: "Select car manufacture",
+                allowClear: true
+            });
+
+            // Fetch car manufacturers from an API
+            const fetchCarManufacturers = async () => {
+                try {
+                    const response = await fetch('https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json');
+                    const data = await response.json();
+
+                    // Populate the dropdown
+                    const brandSelect = $('#brand');
+                    brandSelect.empty(); // Clear the loading message
+                    brandSelect.append('<option value="">Select Manufacturer</option>');
+
+                    data.Results.forEach(manufacturer => {
+                        brandSelect.append(`<option value="${manufacturer.MakeName}">${manufacturer.MakeName}</option>`);
+                    });
+                } catch (error) {
+                    console.error("Error fetching manufacturers:", error);
+                    alert("Failed to load car manufacturers. Please try again later.");
+                }
+            };
+
+            fetchCarManufacturers();
+        });
+    </script>
+    <script>
+        
+        const priceValue = document.getElementById('priceValue');
+
+        // Update the span with the default value
+        priceValue.textContent = priceRange.value;
+
+        // Add an event listener to update the span on range input
+        priceRange.addEventListener('input', () => {
+        priceValue.textContent = priceRange.value;
+        });
+
+        // Populate car manufacturers dynamically
+        document.addEventListener('DOMContentLoaded', () => {
+        const brandSelect = document.getElementById('brand');
+
+        // Fetch car manufacturers from an API
+        const fetchCarManufacturers = async () => {
+            try {
+            const response = await fetch('https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json');
+            const data = await response.json();
+
+            // Populate the dropdown
+            brandSelect.innerHTML = '<option value="">Select Manufacturer</option>';
+            data.Results.forEach(manufacturer => {
+                brandSelect.innerHTML += `<option value="${manufacturer.MakeName}">${manufacturer.MakeName}</option>`;
+            });
+            } catch (error) {
+            console.error("Error fetching manufacturers:", error);
+            alert("Failed to load car manufacturers. Please try again later.");
+            }
+        };
+
+        fetchCarManufacturers();
+        });
+    </script>
+</body>
+</html>
