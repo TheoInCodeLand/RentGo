@@ -19,7 +19,7 @@
     <!-- --------- FAVICON ---------- -->
     <link rel="shortcut icon" href="https://www.logogenie.net/icons/preview/11386" type="image/x-icon">
 
-    <title><%= car.brand %> <%= car.model %> <%= car.name %></title>
+    <title>TheoInCodeLand | <%= car.brand %> <%= car.model %> <%= car.name %></title>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
@@ -32,29 +32,30 @@
 <body>
     <!-- Header Section -->
     <header>
-        <a href="/" >
-            
+        <a href="/">
             <img src="https://www.logogenie.net/icons/preview/11386" alt="Logo" style="width: 80px;">
         </a>
-
-        <nav>
+    
+        <!-- Hamburger Icon -->
+        <div class="hamburger" id="hamburger">&#9776;</div>
+    
+        <nav id="navbar">
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/all-cars">Cars</a></li>
                 <!-- <li><a href="/admin/rental-cars">Favourite cars <i class="uil uil-heart-sign"></i></a></li> -->
-                <li><a href="#Financial Calculator" onclick="openCalculator()">Finance <i class="uil uil-calculator"></i></a></li>
+                <li><a href="#Financial Calculator" onclick="openCalculator()">Finance</a></li>
                 <% if (user) { %>
                     <li><a href="/user/bookings/<%= user.id %>" style="text-decoration: none; color: #f5f5f5a7;">View Bookings</a></li>
-                  <% } else { %>
-                    <li></li><a href="/auth/login" style="text-decoration: none; color: #f5f5f5a7;">Login to View Bookings</a></li>
-                  <% } %>
-                <!-- onclick="openCalculator()" -->
+                <% } else { %>
+                    <li><a href="/auth/login" style="text-decoration: none; color: #f5f5f5a7;">Login to View Bookings</a></li>
+                <% } %>
             </ul>
         </nav>
-    </header>
+    </header>    
 
     <!-- Main Section -->
-    <main>
+    <main class="main">
         <div class="left">
             <h1><%= car.brand %></h1>
             <h2><%= car.name %> (R <%= car.price_per_day %> /day)</h2>
@@ -249,8 +250,10 @@
     </div>
 
     <script>
+        
         function openForm() {
             document.getElementById("bookingForm").style.display = "flex";
+            document.getElementById('navbar').style.display = "none";
         }
     
         function closeForm() {
@@ -259,6 +262,7 @@
         
         function openCalculator() {
             document.getElementById("financial_calculator").style.display = "flex";
+            document.getElementById('navbar').style.display = "none";
         }
     
         function closeCalculator() {
@@ -422,7 +426,17 @@
         document.getElementById('rentalDate').addEventListener('change', calculateTotalCost);
         document.getElementById('returnDate').addEventListener('change', calculateTotalCost);
     </script>
-    
+    <script>
+        // Get the hamburger icon and navbar
+        const hamburger = document.getElementById('hamburger');
+        const navbar = document.getElementById('navbar');
+
+        // Toggle the 'nav-active' class when hamburger is clicked
+        hamburger.addEventListener('click', () => {
+            navbar.classList.toggle('nav-active');
+        });
+
+    </script>
     
 </body>
 </html>
