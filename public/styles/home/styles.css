@@ -18,7 +18,15 @@
 .section__container {
   max-width: var(--max-width);
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 5rem 1rem;
+}
+
+.small__screens {
+  display: none;
 }
 
 .section__subheader {
@@ -140,7 +148,6 @@ nav {
 }
 
 .nav__links a {
-  font-weight: 700;
   color: var(--white);
 }
 
@@ -278,13 +285,8 @@ nav {
 }
 
 .service__list li span {
-  padding: 12px 15px;
   font-size: 1.5rem;
-  color: var(--primary-color);
-  background-color: var(--extra-light);
-  border: 4px solid var(--white);
-  border-radius: 5px;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+  color: var(--primary-color);  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 .service__list h4 {
@@ -428,6 +430,10 @@ nav {
   color: var(--text-dark);
 }
 
+.big__img {
+  min-width: 60vw;
+}
+
 .footer__links {
   display: grid;
   gap: 1rem;
@@ -494,6 +500,12 @@ nav {
   }
 }
 
+@media (width < 769) {
+  .client__name {
+    display: none;
+  }
+}
+
 @media (width > 768px) {
   header::before {
     height: calc(100% - 4rem);
@@ -535,6 +547,11 @@ nav {
     transform: none;
   }
 
+  .small__screens {
+    display: flex;
+    color: white;
+  }
+
   .nav__links a {
     padding-block: 5px;
     color: var(--text-dark);
@@ -555,7 +572,9 @@ nav {
     align-items: center;
     justify-content: flex-end;
   }
-
+  .small__screens {
+    display: block;
+  }
   .nav__btns .btn__primary {
     color: var(--text-dark);
     background-color: transparent;
