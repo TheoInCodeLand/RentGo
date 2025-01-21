@@ -70,11 +70,11 @@ header {
     right: 0;
     flex-direction: column;
     list-style: none;
-    width: 12em;
-    background: #000e36e5;
+    width: 20em;
+    height: 20em;
+    background: #000000;
     padding: 1em;
     gap: 0.7em;
-    border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.5s ease-in-out
 }
@@ -91,7 +91,7 @@ header {
 }
 
 .dropdown li:hover {
-    background: #474ea0a8;
+    background: #474ea0;
 }
 
 /* HOVER EFFECT */
@@ -114,7 +114,7 @@ header {
     justify-content: center;
 }
 
-.hero__section .left, .hero__section .right {
+.hero__section .left, .hero__section .right_ {
     width: 40%;
     display: flex;
     flex-direction: column;
@@ -126,7 +126,7 @@ header {
 }
 
 .hero__section .left h1 {
-    font-size: 2em;
+    font-size: x-large;
 }
 
 .hero__section .left h3 {
@@ -138,7 +138,7 @@ header {
     width: 40%;
 }
 
-.hero__section .right img {
+.hero__section .right_ img {
     width: 70%;
 }
 
@@ -383,10 +383,44 @@ main .right .__container .manage__rentals rental {
     color: #3b4188;
 }
 
+.table__links {
+    text-decoration: none;
+    color: #555;
+}
+
 /* Responsive Design for Table */
 @media (max-width: 768px) {
     .booking-table th, .booking-table td {
         padding: 0.5rem;
         font-size: 0.85rem;
+    }
+
+    .table__id {
+        display: none;
+    }
+
+    .left p{
+        display: none;
+    }
+
+}
+
+@media (max-width: 628px) {
+    .booking-table th, .booking-table td {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .table__id {
+        display: none;
+    }
+}
+
+@media (max-width: 431px) {
+    .right_ {
+        display: none;
+    }
+    .table__costs {
+        display: none;
     }
 }
