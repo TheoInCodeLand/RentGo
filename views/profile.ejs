@@ -72,7 +72,7 @@
                 </div>
                 <ul class="dropdown">
                     <li><a href="/" class="account"><i class="uil uil-home"></i> home</a></li>
-                    <li><a href="/all-cars" class="account"><i class="uil uil-car"></i> all cars</a></li>
+                    <li><a href="/all-cars" class="account"><i class="uil uil-car"></i> Add car</a></li>
                     <li><a href="/favourites" class="account"><i class="uil uil-favorite"></i> favourite cars</a></li>
                     <li><a href="/auth/logout" class="account"> <i class="uil uil-signout"></i> logout </a></li>
                 </ul>
@@ -86,7 +86,7 @@
                 <a href="/all-cars" class="add-car">Book a New Car</a>
 
             </div>
-            <div class="right">
+            <div class="right_">
                 <img src="https://www.pngall.com/wp-content/uploads/13/Pay-PNG-Background.png" alt="">
             </div>
         </div>
@@ -189,11 +189,10 @@
                     <table class="booking-table">
                         <thead>
                             <tr>
-                                <th>Booking ID</th>
-                                <th>View car</th>
+                                <th class="table__id">Booking ID</th>
                                 <th>Car</th>
-                                <th>Rental Dates</th>
-                                <th>Total Cost</th>
+                                <th class="table__costs">Rental Dates</th>
+                                <th class="table__costs">Total Cost</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -202,15 +201,14 @@
                             <% if (bookings.length > 0) { %>
                                 <% bookings.forEach(function(booking) { %>
                             <tr>
-                                <td><%= booking.id %></td>
+                                <td class="table__id"><%= booking.id %></td>
+                                
                                 <td>
-                                    <a href="/car/<%= booking.car_id %>">
-                                        <img src="https://www.bookitlive.net/content/wp-content/uploads/2023/07/Screen-Shot-2023-07-28-at-1.43.13-pm.png" width="80px" alt="" class="booking__img">
+                                    <a href="/car/<%= booking.car_id %>" class="table__links">
+                                        <%= booking.car_name %></td>
                                     </a>
-                                </td>
-                                <td><%= booking.car_brand %> <%= booking.car_name %></td>
-                                <td><%= booking.rental_date %> to <%= booking.return_date %></td>
-                                <td>R <%= booking.total_cost %></td>
+                                <td class="table__costs"><%= booking.rental_date %> to <%= booking.return_date %></td>
+                                <td class="table__costs">R <%= booking.total_cost %></td>
                                 <td><%= booking.status %></td>
                                 <td>
                                     <!-- <button class="action-btn">View</button>  -->
