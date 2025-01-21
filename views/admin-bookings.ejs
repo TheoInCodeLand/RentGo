@@ -26,6 +26,12 @@
             color: #212529;
         }
 
+        .error__message {
+            display: none;
+            height: 100vh;
+            width: 100vw;
+        }
+
         /* Navbar */
         .navbar {
             padding: 0.8rem 1rem;
@@ -114,6 +120,16 @@
             color: #ffffff;
         }
 
+        @media (max-width: 1000px) {
+            .error__message {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .container {
+                display: none;
+            }
+        }
         /* Media Queries */
         @media (max-width: 768px) {
             .navbar {
@@ -217,6 +233,9 @@
             </table>
         </div>
     </div>
+    <section class="error__message">
+        <h3>ADMIN DASHBOARD IS ONLY FOR LARGER SCREENS</h3>
+    </section>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
