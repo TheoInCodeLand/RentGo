@@ -16,8 +16,8 @@ function ensureAuthenticated(req, res, next) {
 const PAYFAST_MERCHANT_ID = '10036421'; // Replace with your Merchant ID
 const PAYFAST_MERCHANT_KEY = 'trtcpc2rx80lm'; // Replace with your Merchant Key
 
-const PAYFAST_CANCEL_URL = 'http://localhost:8000/payment/cancel';
-const PAYFAST_NOTIFY_URL = 'http://localhost:8000/payment/notify';
+const PAYFAST_CANCEL_URL = 'https://rentgo-ryv4.onrender.com//payment/cancel';
+const PAYFAST_NOTIFY_URL = 'https://rentgo-ryv4.onrender.com//payment/notify';
 
 // Route to initiate payment
 router.post('/initiate', ensureAuthenticated, async (req, res) => {
@@ -35,7 +35,7 @@ router.post('/initiate', ensureAuthenticated, async (req, res) => {
             merchant_key: PAYFAST_MERCHANT_KEY,
             amount: parseFloat(amount).toFixed(2), // Format amount to 2 decimal places
             item_name: `Payment for Booking ${itemName} booking id is ${bookingId}.`,
-            return_url: `http://localhost:8000/payment/success?bookingId=${bookingId}`,
+            return_url: `https://rentgo-ryv4.onrender.com//payment/success?bookingId=${bookingId}`,
             cancel_url: PAYFAST_CANCEL_URL,
             notify_url: PAYFAST_NOTIFY_URL,
             custom_int1: bookingId, // Pass booking ID as metadata
